@@ -1,4 +1,6 @@
 <script setup>
+import { computed } from 'vue';
+
 const props = defineProps({
     carrito: {
         type: Array,
@@ -10,7 +12,11 @@ const props = defineProps({
     }
 })
 
-defineEmits(['decrementar-cantidad', 'incrementar-cantidad', 'agregar-carrito'])
+defineEmits(['decrementar-cantidad', 'incrementar-cantidad', 'agregar-carrito', 'eliminar-producto', 'vaciar-carrito'])
+
+const totalPagar = computed(() => {
+    return props.carrito.reduce((total, producto) => total + (producto.cantidad * producto.precio), 0)
+})
 
 </script>
 <template>
@@ -68,16 +74,21 @@ defineEmits(['decrementar-cantidad', 'incrementar-cantidad', 'agregar-carrito'])
                                                 </button>
                                             </td>
                                             <td>
-                                                <button class="btn btn-danger" type="button">X</button>
+                                                <button 
+                                                    class="btn btn-danger" 
+                                                    type="button"
+                                                    @click="$emit('eliminar-producto', producto.id)">X</button>
                                             </td>
                                         </tr>
                                     </tbody>
                                 </table>
 
                                 <p class="text-end">
-                                    Total pagar: <span class="fw-bold">$899</span>
+                                    Total pagar: <span class="fw-bold">${{ totalPagar }}</span>
                                 </p>
-                                <button class="btn btn-dark w-100 mt-3 p-2">
+                                <button 
+                                    class="btn btn-dark w-100 mt-3 p-2"
+                                    @click="$emit('vaciar-carrito')">
                                     Vaciar Carrito
                                 </button>
                             </div>
