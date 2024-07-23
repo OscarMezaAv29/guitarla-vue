@@ -2,16 +2,16 @@
 
 Este es mi primer proyecto en Vue.js 3, donde aprendí a usar varias funcionalidades del framework.
 
-Funcionalidades
-Componentes
-Custom Events
-Directivas
-State
-Props
-Watch
-Eventos
-Emits
-Computed
+- Funcionalidades
+- Componentes
+- Custom Events
+- Directivas
+- State
+- Props
+- Watch
+- Eventos
+- Emits
+- Computed
 
 # URL del proyecto terminado
 
